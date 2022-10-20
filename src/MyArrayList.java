@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class MyArrayList<T> implements Comparator {
+public class MyArrayList<T> implements Comparator<Object> {
 
     private final int INIT_SIZE = 16;
     private final int CUT_RATE = 4;
@@ -15,7 +15,7 @@ public class MyArrayList<T> implements Comparator {
     }
 
     public T get(int index) {
-        if(index >= pointer) {
+        if (index >= pointer) {
             throw new IndexOutOfBoundsException("Invalid index " + index + ". The size of current list is " + pointer);
         }
 
@@ -48,10 +48,10 @@ public class MyArrayList<T> implements Comparator {
         for (int i = 0; i < pointer - 1; i++) {
 
             for (int j = 0; j < pointer - i - 1; j++) {
-                if (compare(array[j],array[j+1]) > 0) {
+                if (compare(array[j], array[j + 1]) > 0) {
                     Object temp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = temp;
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
 
@@ -61,7 +61,7 @@ public class MyArrayList<T> implements Comparator {
     @Override
     public int compare(Object o1, Object o2) {
 
-        if(o1 instanceof Number && o2 instanceof Number) {
+        if (o1 instanceof Number && o2 instanceof Number) {
             return (int) (((Number) o1).doubleValue() - ((Number) o2).doubleValue());
         }
 
