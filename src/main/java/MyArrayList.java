@@ -22,7 +22,31 @@ public class MyArrayList<T> implements Comparator<Object> {
         return (T) array[index];
     }
 
+    public void set(int index, T item) {
+
+        if (index >= pointer) {
+            throw new IndexOutOfBoundsException("Invalid index " + index + ". The size of current list is " + pointer);
+        }
+
+        if (pointer == array.length - 1) {
+            resize(array.length * 2);
+        }
+
+        for (int i = pointer; i > index; i--) {
+            array[i] = array[i - 1];
+        }
+
+        array[index] = item;
+
+        pointer++;
+    }
+
     public void remove(int index) {
+
+        if (index >= pointer) {
+            throw new IndexOutOfBoundsException("Invalid index " + index + ". The size of current list is " + pointer);
+        }
+
         for (int i = index; i < pointer; i++) {
             array[i] = array[i + 1];
         }
